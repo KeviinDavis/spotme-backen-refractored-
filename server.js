@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
-const workoutRoutes = require("./routes/workouts"); // Import workout routes
+const workoutRoutes = require("./routes/workouts"); 
 
 // Load environment variables
 dotenv.config();
@@ -13,12 +13,12 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(express.json()); // Parse JSON bodies
-app.use(cors()); // Enable CORS for cross-origin requests
+app.use(express.json()); 
+app.use(cors()); 
 
 // Routes
-app.use("/api/auth", authRoutes); // Authentication routes
-app.use("/api/workouts", workoutRoutes); // Workout routes
+app.use("/api/auth", authRoutes); 
+app.use("/api/workouts", workoutRoutes);
 
 // MongoDB Connection
 mongoose
