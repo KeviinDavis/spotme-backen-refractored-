@@ -39,6 +39,11 @@ app.options("*", cors()); // Ensure preflight requests are handled globally
 app.use("/api/auth", authRoutes);
 app.use("/api/workouts", workoutRoutes);
 
+// Default Route (optional but recommended for clarity)
+app.get("/", (req, res) => {
+  res.send("Welcome to the SpotMe Backend API! Use /api/auth or /api/workouts for API requests.");
+});
+
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI)
