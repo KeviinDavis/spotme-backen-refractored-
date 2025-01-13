@@ -15,23 +15,25 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-// Configure CORS to allow requests from your Netlify domain
-const allowedOrigins = ["https://spotmee.netlify.app", "http://localhost:5173"];
+// Configure CORS
+const allowedOrigins = ["http://localhost:5173", "https://spotmee.netlify.app"];
 
 app.use(
   cors({
     origin: function (origin, callback) {
       if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
+        callback(null, true); // Allow the origin
       } else {
-        callback(new Error("Not allowed by CORS"));
+        callback(new Error("Not allowed by CORS")); // Block others
       }
     },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Ensure OPTIONS is handled
+    credentials: true, // Allow cookies and authorization headers
   })
 );
 
+// Handle preflight requests
+app.options("*", cors()); // Ensure preflight requests are handled globally
 
 // Routes
 app.use("/api/auth", authRoutes);
