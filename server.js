@@ -24,25 +24,18 @@ app.use(
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true); // Allow the origin
       } else {
-        callback(new Error("Not allowed by CORS")); // Block others
+        callback(new Error("Not allowed by CORS"));
       }
     },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Ensure OPTIONS is handled
-    credentials: true, // Allow cookies and authorization headers
+    methods: ["GET", "POST", "PUT", "DELETE"], 
+    credentials: true, 
   })
 );
-
-// Handle preflight requests
-app.options("*", cors()); // Ensure preflight requests are handled globally
 
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/workouts", workoutRoutes);
 
-// Default Route (optional but recommended for clarity)
-app.get("/", (req, res) => {
-  res.send("Welcome to the SpotMe Backend API! Use /api/auth or /api/workouts for API requests.");
-});
 
 // MongoDB Connection
 mongoose
