@@ -6,8 +6,6 @@ const cors = require("cors");
 // Routes
 const authRoutes = require("./routes/auth");
 const workoutRoutes = require("./routes/workouts");
-const programRoutes = require("./routes/programs");
-
 
 // Load environment variables
 dotenv.config();
@@ -37,7 +35,6 @@ app.use(
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/workouts", workoutRoutes);
-app.use("/api/programs", programRoutes);              
 
 
 // MongoDB Connection
